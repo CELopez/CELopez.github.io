@@ -1,13 +1,12 @@
 remote_theme: sujaykundu777/devlopr-jekyll  # Don't touch ( required for this theme)
 
-# Edit your preferences below 
-title: John Doe
-subtitle: Full Stack Web Developer
+# Edit your preferences below
+title: My Portfolio
+subtitle: Full Stack Developer
 description: >- # this means to ignore newlines until "baseurl:"
-  John Doe uses devlopr-jekyll - a Jekyll Theme Built For Developers
+  A combination of my project showcasing, plus blog sharing my learnings and thoughts on topics.
 
 url: "https://celopez.github.io" # the base hostname & protocol for your site, e.g. https://example.github.io
-#url: "http://localhost:400"
 baseurl: "" # the subpath of your site, e.g. /blog
 
 urls:
@@ -20,35 +19,35 @@ urls:
     - text: Sample Page
       url: /sample-page
 
-# Edit these details 
+# Edit these details
 
 author_logo: profile.png
-author: John Doe
-author_bio: Hi, My Name is John Doe. I love to Code and Design. devlopr-jekyll is a theme built for developers.  
-author_email: "johndoe@gmail.com"
-author_location: India
-author_website_url: "http://johndoe.com"
+author: Chris Lopez
+author_bio: Hi, My Name is Chris Lopez. I'm a technologist at heart. Full Stack developer with a particular interest in
+            Infrastructure/Backend Engineering, but given my desire to create without limitations I like to remain a full stack developer.
+author_email: "chris.e.lopez@gmail.com"
+author_location: San Jose, California
 
-author_work_experiences: 
-            - company_name: Google
-              company_logo: google.png
-              company_url: https://google.com
+author_work_experiences:
+            - company_name: Intel
+              company_logo: intel_logo.png
+              company_url: https://www.intel.com/
               designation: Software Engineer
-              description: Worked on various Google Products
+              description: Building desktop clients and related cloud infrastructure for data aggregation and processing.
               visibility: true
-            - company_name: Microsoft
-              company_logo: microsoft.png
-              company_url: https://microsoft.com
-              designation: Azure Developer
-              description: Worked on various Azure Cloud Products
+            - company_name: Intel
+              company_logo: intel_logo.png
+              company_url: https://www.intel.com/
+              designation: Technical Lead
+              description: Built Data Pipelines for processing and tracability for Mobileye's Autonomous Vehicles
               visibility: true
 
 author_education_details:
-              - college_logo: mit.png
-                college_name: MIT
-                college_url: https://mit.org
-                college_degree: CS Engineer
-                description: Bachelor of Technology
+              - college_logo: utd_logo.png
+                college_name: UTDallas
+                college_url: https://www.utdallas.edu/
+                college_degree: Computer Science & Software Engineering (with Networking Security Specialization)
+                description: Bachelors of Science
                 visibility: true
 
 author_project_details:
@@ -56,30 +55,21 @@ author_project_details:
                 project_title: Gamers Hub
                 project_description: A Platform built for Gamers and Game Devs
                 project_url: https://gamershub.in
-                visibility: true
+                visibility: false
               - project_thumbnail: programmingebooks.png
                 project_title: Programming Ebooks
                 project_description: A Platform to easily find and read programming books
                 project_url: https://programmingebooks.com
-                visibility: true
+                visibility: false
 
 # social links
-twitter_username: johndoe
-github_username:  johndoe
-facebook_username: johndoe
-linkedin_username: johndoe
-behance_username: johndoe
-instagram_username: johndoe
-medium_username: johndoe
-telegram_username: johndoe
-dribbble_username: johndoe
-flickr_username: johndoe
+twitter_username: @Lopez_E_Chris
+github_username:  CELopez
+linkedin_username: https://www.linkedin.com/in/christopher-lopez-araiza
+
 
 #for comments using disqus
-disqus_shortname: sujay-kundu  
-
-# wakatime username
-wakatime_username: sujaykundu777
+disqus_shortname: sujay-kundu
 
 # syntax highlighter
 markdown: kramdown
@@ -87,7 +77,7 @@ highlighter: rouge
 permalink: pretty
 
 # google analytics
-google_analytics: UA-46783401-10 
+google_analytics: UA-153150934-1
 
 # Choose what to show ( can be true or false)
 show_author_work_experiences: true
@@ -109,7 +99,7 @@ paginate: 8
 per_page: 4
 paginate_path: "/blog/page/:num/"
 
-# minify 
+# minify
 compress_html:
   clippings: all
   comments: ["<!-- ", " -->"]

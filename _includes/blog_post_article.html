@@ -9,7 +9,7 @@
             </span>{% endif %} at
             <time datetime="{{ page.date }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>
         </p>
-        <span class="disqus-comment-count" data-disqus-identifier="{{ page.url }}"></span>     
+        <span class="disqus-comment-count" data-disqus-identifier="{{ page.url }}"></span>
         <div class="post-categories">
             {% if post %} {% assign categories = post.categories %} {% else %} {% assign categories = page.categories %} {% endif %}
             Category : {% for category in categories %}
