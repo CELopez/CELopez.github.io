@@ -6,7 +6,7 @@ subtitle: Full Stack Developer
 description: >- # this means to ignore newlines until "baseurl:"
   A combination of my project showcasing, plus blog sharing my learnings and thoughts on topics.
 
-url: "https://celopez.github.io" # the base hostname & protocol for your site, e.g. https://example.github.io
+url: "https://www.chrislopez.dev" # the base hostname & protocol for your site, e.g. https://example.github.io
 baseurl: "" # the subpath of your site, e.g. /blog
 
 urls:
