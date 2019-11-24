@@ -3,7 +3,14 @@ body{
 }
 
 .company-logo{
+    width: 90%;
+    height: 80%;
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+
+.college-logo{
     width: 100%;
-    height: 100%;
+    height: 75%;
 }
 
