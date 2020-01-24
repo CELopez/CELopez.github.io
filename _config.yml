@@ -25,9 +25,15 @@ author_logo: profile.png
 author: Chris Lopez
 author_bio: Hi, My Name is Chris Lopez. I'm a technologist at heart. Full Stack developer with a particular interest in
             Infrastructure/Backend Engineering, but given my desire to create without limitations I like to remain a full stack developer.
-author_location: San Jose, California
+author_location: Manhattan, NY
 
 author_work_experiences:
+            - company_name: AWS
+              company_logo: AWS_logo.png
+              company_url: https://aws.amazon.com/
+              designation: Software Developer (SDE II)
+              description: Working on the Buckeye Program.
+              visibility: true
             - company_name: Intel
               company_logo: intel_logo.png
               company_url: https://www.intel.com/
