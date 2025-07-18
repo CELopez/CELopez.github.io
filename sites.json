@@ -1,0 +1,25 @@
+{
+  "sites": [
+    {
+      "name": "main",
+      "config": "_config.yml",
+      "domain": "yourdomain.com",
+      "path": "",
+      "description": "Main personal website"
+    },
+    {
+      "name": "blog",
+      "config": "sites/blog/_config.yml",
+      "domain": "blog.yourdomain.com",
+      "path": "blog",
+      "description": "Personal blog"
+    },
+    {
+      "name": "portfolio",
+      "config": "sites/portfolio/_config.yml",
+      "domain": "portfolio.yourdomain.com",
+      "path": "portfolio",
+      "description": "Portfolio showcase"
+    }
+  ]
+}

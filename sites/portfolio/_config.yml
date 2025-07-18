@@ -1,0 +1,224 @@
+# Portfolio Site Configuration
+# Inherits from main Minimal Mistakes theme
+
+# Theme Settings
+minimal_mistakes_skin: "contrast" # Different skin for portfolio
+
+# Site Settings
+locale: "en-US"
+title: "My Portfolio"
+title_separator: "-"
+subtitle: "Showcasing my work and projects"
+name: "Your Name"
+description: "A portfolio showcasing my projects, skills, and professional experience."
+url: "https://portfolio.yourdomain.com"
+baseurl: "/portfolio"
+repository: # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+teaser: # path of fallback teaser image, e.g. "/assets/images/500x300.png"
+logo: # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
+masthead_title: # overrides the website title displayed in the masthead, use " " for no title
+breadcrumbs: true # true, false (default)
+words_per_minute: 200
+
+# Comments
+comments:
+  provider: false # Disable comments for portfolio
+
+# SEO Related
+google_site_verification:
+bing_site_verification:
+yandex_site_verification:
+naver_site_verification:
+
+# Social Sharing
+twitter:
+  username: # &twitter "your_twitter_username"
+facebook:
+  username: # &facebook "your_facebook_username"
+  app_id:
+  publisher:
+og_image: # Open Graph/Twitter default site image
+# For specifying social profiles
+# - https://developers.google.com/structured-data/customize/social-profiles
+social:
+  type: # Person or Organization (defaults to Person)
+  name: # If the user or organization name differs from the site's name
+  links: # An array of links to social media profiles
+
+# Analytics
+analytics:
+  provider: # false (default), "google", "google-universal", "google-gtag", "custom"
+  google:
+    tracking_id:
+    anonymize_ip: # true, false (default)
+
+# Site Author
+author:
+  name: "Your Name"
+  avatar: # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  bio: "Developer, designer, and creative problem solver."
+  location: "Your Location"
+  email: # "your.email@example.com"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      # url: "mailto:your.email@example.com"
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://yourdomain.com"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      # url: "https://linkedin.com/in/your_username"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      # url: "https://github.com/your_username"
+
+# Site Footer
+footer:
+  links:
+    - label: "Main Site"
+      icon: "fas fa-fw fa-link"
+      url: "https://yourdomain.com"
+    - label: "Blog"
+      icon: "fas fa-fw fa-blog"
+      url: "https://blog.yourdomain.com"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      # url: "https://linkedin.com/in/your_username"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      # url: "https://github.com/your_username"
+
+# Reading Files
+include:
+  - .htaccess
+  - _pages
+  - _portfolio
+exclude:
+  - "*.sublime-project"
+  - "*.sublime-workspace"
+  - vendor
+  - .asset-cache
+  - .bundle
+  - .jekyll-assets-cache
+  - .sass-cache
+  - assets/js/plugins
+  - assets/js/_main.js
+  - assets/js/vendor
+  - Capfile
+  - CHANGELOG
+  - config
+  - Gemfile
+  - Gruntfile.js
+  - gulpfile.js
+  - LICENSE
+  - log
+  - node_modules
+  - package.json
+  - package-lock.json
+  - Rakefile
+  - README
+  - tmp
+  - /docs # ignore Minimal Mistakes /docs
+  - /test # ignore Minimal Mistakes /test
+keep_files:
+  - .git
+  - .svn
+encoding: "utf-8"
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+
+# Conversion
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+
+# Markdown Processing
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+
+# Sass/SCSS
+sass:
+  sass_dir: _sass
+  style: compressed # https://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+
+# Outputting
+permalink: /:categories/:title/
+paginate: 6 # amount of projects to show
+paginate_path: /page:num/
+timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
+# Plugins (previously gems:)
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-include-cache
+
+# mimic GitHub Pages with --safe
+whitelist:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-include-cache
+
+# Collections
+collections:
+  portfolio:
+    output: true
+    permalink: /:collection/:name/
+
+# Archives
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
+
+# HTML Compression
+# - https://jch.penibelst.de/
+compress_html:
+  clippings: all
+  ignore:
+    envs: development
+
+# Defaults
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: false
+      read_time: true
+      comments: false
+      share: true
+      related: false
+  # _portfolio
+  - scope:
+      path: ""
+      type: portfolio
+    values:
+      layout: single
+      author_profile: false
+      share: true
+      header:
+        overlay_color: "#000"
+        overlay_filter: "0.5"
+        actions:
+          - label: "View Project"
+            url: "#"
+          - label: "Back to Main Site"
+            url: "https://yourdomain.com"

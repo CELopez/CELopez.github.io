@@ -1,0 +1,173 @@
+<!-- Domain Navigation Guard -->
+<!-- Prevents cross-domain navigation between different sites in the multi-site setup -->
+<script>
+(function() {
+    'use strict';
+    
+    // Current domain and path
+    const currentDomain = window.location.hostname;
+    const currentPath = window.location.pathname;
+    
+    // Site configurations loaded from build
+    {% if site.multi_site_config %}
+    const siteConfigs = {{ site.multi_site_config | jsonify }};
+    {% else %}
+    // Fallback configurations - should be replaced by build script
+    const siteConfigs = [
+        {
+            "name": "main",
+            "domain": "{{ site.url | replace: 'https://', '' | replace: 'http://', '' }}",
+            "path": "{{ site.baseurl | default: '' }}",
+            "description": "{{ site.title | default: 'Main Site' }}"
+        }
+    ];
+    {% endif %}
+    
+    // Find current site configuration
+    const currentSite = siteConfigs.find(site => {
+        const siteDomain = site.domain.replace(/^https?:\/\//, '').replace(/^www\./, '');
+        const checkDomain = currentDomain.replace(/^www\./, '');
+        return siteDomain === checkDomain;
+    });
+    
+    if (currentSite) {
+        console.log('🔒 Domain navigation guard active for:', currentSite.name);
+        
+        // Redirect to correct path if needed
+        if (currentSite.path && currentSite.path !== '' && currentSite.path !== '/') {
+            const expectedPath = '/' + currentSite.path.replace(/^\//, '');
+            if (!currentPath.startsWith(expectedPath) && (currentPath === '/' || currentPath === '')) {
+                console.log('🔄 Redirecting to correct path:', expectedPath);
+                window.location.href = expectedPath + '/';
+                return;
+            }
+        }
+        
+        // Add click event listener for link protection
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a');
+            if (!link) return;
+            
+            const href = link.getAttribute('href');
+            if (!href) return;
+            
+            // Skip if it's a fragment link or relative path
+            if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+                return;
+            }
+            
+            try {
+                let linkUrl;
+                
+                // Handle absolute URLs
+                if (href.startsWith('http://') || href.startsWith('https://')) {
+                    linkUrl = new URL(href);
+                } else if (href.startsWith('//')) {
+                    linkUrl = new URL('https:' + href);
+                } else {
+                    // Relative URL, resolve against current origin
+                    linkUrl = new URL(href, window.location.origin);
+                }
+                
+                const linkDomain = linkUrl.hostname.replace(/^www\./, '');
+                
+                // Check if this links to a different configured site
+                const targetSite = siteConfigs.find(site => {
+                    const siteDomain = site.domain.replace(/^https?:\/\//, '').replace(/^www\./, '');
+                    return siteDomain === linkDomain;
+                });
+                
+                // If linking to a different configured site domain, prevent navigation
+                if (targetSite && targetSite.name !== currentSite.name) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    console.warn('🚫 Cross-domain navigation prevented:', href);
+                    
+                    // Show user-friendly notification
+                    const notification = document.createElement('div');
+                    notification.style.cssText = `
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        background: #ff6b6b;
+                        color: white;
+                        padding: 15px 20px;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                        z-index: 10000;
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                        font-size: 14px;
+                        max-width: 300px;
+                        transition: opacity 0.3s ease;
+                    `;
+                    notification.innerHTML = `
+                        <strong>🔒 Navigation Restricted</strong><br>
+                        Direct access to "${targetSite.description}" is restricted.<br>
+                        <small>Please visit <strong>${targetSite.domain}</strong> directly.</small>
+                    `;
+                    
+                    document.body.appendChild(notification);
+                    
+                    // Auto-remove notification after 5 seconds
+                    setTimeout(() => {
+                        notification.style.opacity = '0';
+                        setTimeout(() => {
+                            if (notification.parentNode) {
+                                notification.parentNode.removeChild(notification);
+                            }
+                        }, 300);
+                    }, 5000);
+                    
+                    // Allow click to dismiss
+                    notification.addEventListener('click', () => {
+                        notification.style.opacity = '0';
+                        setTimeout(() => {
+                            if (notification.parentNode) {
+                                notification.parentNode.removeChild(notification);
+                            }
+                        }, 300);
+                    });
+                    
+                    return false;
+                }
+            } catch (err) {
+                // Invalid URL or other error, let the browser handle it normally
+                console.debug('URL parsing error (allowing normal navigation):', err);
+            }
+        });
+        
+        // Add visual indicator that domain protection is active
+        if (currentSite.name !== 'main') {
+            const indicator = document.createElement('div');
+            indicator.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                background: rgba(0,0,0,0.8);
+                color: white;
+                padding: 8px 12px;
+                border-radius: 20px;
+                font-size: 11px;
+                font-family: monospace;
+                z-index: 9999;
+                opacity: 0.7;
+                pointer-events: none;
+            `;
+            indicator.textContent = `🔒 ${currentSite.name.toUpperCase()} DOMAIN`;
+            document.body.appendChild(indicator);
+            
+            // Fade out after 3 seconds
+            setTimeout(() => {
+                indicator.style.transition = 'opacity 1s ease';
+                indicator.style.opacity = '0';
+                setTimeout(() => {
+                    if (indicator.parentNode) {
+                        indicator.parentNode.removeChild(indicator);
+                    }
+                }, 1000);
+            }, 3000);
+        }
+    }
+})();
+</script>
