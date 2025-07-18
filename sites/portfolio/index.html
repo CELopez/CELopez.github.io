@@ -1,0 +1,28 @@
+---
+layout: collection
+collection: portfolio
+entries_layout: grid
+classes: wide
+sort_by: date
+sort_order: reverse
+author_profile: false
+header:
+  overlay_color: "#000"
+  overlay_filter: "0.5"
+  overlay_image: /assets/images/portfolio-hero.jpg
+  actions:
+    - label: "View All Projects"
+      url: "#projects"
+    - label: "Main Site"
+      url: "https://yourdomain.com"
+    - label: "Blog"
+      url: "https://blog.yourdomain.com"
+excerpt: "Showcasing my projects, skills, and professional experience through a curated collection of work."
+---
+
+<div id="projects"></div>
+
+<script>
+// Include domain navigation guard
+{% include domain-navigation-guard.html %}
+</script>

@@ -1,0 +1,347 @@
+---
+layout: default
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.title }} - {{ site.parent1_name }} & {{ site.parent2_name }}</title>
+    <meta name="description" content="{{ site.description }}">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ site.url }}">
+    <meta property="og:title" content="{{ site.title }}">
+    <meta property="og:description" content="{{ site.description }}">
+    <meta property="og:image" content="{{ site.url }}/assets/images/social-share.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ site.url }}">
+    <meta property="twitter:title" content="{{ site.title }}">
+    <meta property="twitter:description" content="{{ site.description }}">
+    <meta property="twitter:image" content="{{ site.url }}/assets/images/social-share.jpg">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+</head>
+<body>
+    <!-- Hero Section -->
+    {% if site.sections.hero %}
+    <section id="hero" class="hero-section">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <div class="container">
+                <h1 class="hero-title">{{ site.title }}</h1>
+                <p class="hero-subtitle">{{ site.parent1_name }} & {{ site.parent2_name }} {{ site.last_name }}</p>
+                
+                {% if site.sections.countdown %}
+                <div class="countdown-container">
+                    <h3>The Big Reveal</h3>
+                    <div id="countdown" class="countdown">
+                        <div class="countdown-item">
+                            <span id="days">00</span>
+                            <label>Days</label>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="hours">00</span>
+                            <label>Hours</label>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="minutes">00</span>
+                            <label>Minutes</label>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="seconds">00</span>
+                            <label>Seconds</label>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <div class="hero-buttons">
+                    <a href="#reveal" class="btn btn-primary btn-large">
+                        <i class="fas fa-gift"></i> See the Big Reveal
+                    </a>
+                    <a href="#party" class="btn btn-secondary">
+                        <i class="fas fa-calendar"></i> Party Details
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- About Us Section -->
+    {% if site.sections.about_us %}
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">Our Journey</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="story">
+                        {{ site.about.story | markdownify }}
+                    </div>
+                    <div class="fun-facts">
+                        <h3>Fun Facts</h3>
+                        <ul>
+                            {% for fact in site.about.fun_facts %}
+                            <li>{{ fact }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="about-photo">
+                    <img src="{{ site.parents_photo }}" alt="{{ site.parent1_name }} and {{ site.parent2_name }}" class="parents-photo">
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Timeline Section -->
+    {% if site.sections.timeline %}
+    <section id="timeline" class="timeline-section">
+        <div class="container">
+            <h2 class="section-title">Our Baby Timeline</h2>
+            <div class="timeline">
+                {% for event in site.timeline %}
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <i class="fas fa-{{ event.icon }}"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">{{ event.date | date: "%B %d, %Y" }}</div>
+                        <h3 class="timeline-title">{{ event.title }}</h3>
+                        <p class="timeline-description">{{ event.description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Photo Gallery Section -->
+    {% if site.sections.gallery %}
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Our Pregnancy Journey</h2>
+            
+            <div class="gallery-category">
+                <h3>Ultrasound Photos</h3>
+                <div class="photo-grid">
+                    {% for photo in site.gallery.ultrasound_photos %}
+                    <div class="photo-item">
+                        <img src="{{ photo }}" alt="Ultrasound photo" class="gallery-image" onclick="openLightbox('{{ photo }}')">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="gallery-category">
+                <h3>Pregnancy Milestones</h3>
+                <div class="photo-grid">
+                    {% for photo in site.gallery.pregnancy_journey %}
+                    <div class="photo-item">
+                        <img src="{{ photo }}" alt="Pregnancy journey photo" class="gallery-image" onclick="openLightbox('{{ photo }}')">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- The Big Reveal Section -->
+    {% if site.sections.reveal %}
+    <section id="reveal" class="reveal-section">
+        <div class="container">
+            <h2 class="section-title">The Moment You've Been Waiting For...</h2>
+            
+            <div class="reveal-container">
+                <div id="reveal-card" class="reveal-card">
+                    <div class="reveal-front">
+                        <img src="/assets/images/reveal/neutral-before.jpg" alt="Before reveal" class="reveal-image">
+                        <h3>Are You Ready?</h3>
+                        <button id="reveal-button" class="btn btn-reveal btn-large">
+                            <i class="fas fa-gift"></i>
+                            {{ site.reveal.button_text }}
+                        </button>
+                    </div>
+                    
+                    <div id="reveal-back" class="reveal-back hidden">
+                        {% if site.gender == "boy" %}
+                        <img src="/assets/images/reveal/boy-reveal.jpg" alt="It's a boy!" class="reveal-image">
+                        <h3 class="reveal-announcement boy">{{ site.reveal.boy_announcement }}</h3>
+                        <p class="reveal-message">{{ site.reveal.boy_message }}</p>
+                        {% else %}
+                        <img src="/assets/images/reveal/girl-reveal.jpg" alt="It's a girl!" class="reveal-image">
+                        <h3 class="reveal-announcement girl">{{ site.reveal.girl_announcement }}</h3>
+                        <p class="reveal-message">{{ site.reveal.girl_message }}</p>
+                        {% endif %}
+                        
+                        {% if site.baby_name != "" %}
+                        <p class="baby-name">Meet {{ site.baby_name }}!</p>
+                        {% endif %}
+                        
+                        <div class="social-share">
+                            <p>Share the news!</p>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn facebook" onclick="shareOnFacebook()">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="share-btn twitter" onclick="shareOnTwitter()">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp()">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Confetti Canvas -->
+        <canvas id="confetti-canvas"></canvas>
+    </section>
+    {% endif %}
+
+    <!-- Party Details Section -->
+    {% if site.sections.party_details %}
+    <section id="party" class="party-section">
+        <div class="container">
+            <h2 class="section-title">Join Our Celebration!</h2>
+            
+            <div class="party-details">
+                <div class="party-info">
+                    <div class="party-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div>
+                            <h3>Date & Time</h3>
+                            <p>{{ site.party.date | date: "%A, %B %d, %Y" }}</p>
+                            <p>{{ site.party.time }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="party-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Location</h3>
+                            <p>{{ site.party.location }}</p>
+                            <a href="{{ site.party.address_link }}" target="_blank" class="btn btn-small">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="party-item">
+                        <i class="fas fa-tshirt"></i>
+                        <div>
+                            <h3>Dress Code</h3>
+                            <p>{{ site.party.dress_code }}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="party-contact">
+                    <h3>Questions?</h3>
+                    <p>Contact us:</p>
+                    <p><i class="fas fa-envelope"></i> {{ site.party.rsvp_email }}</p>
+                    <p><i class="fas fa-phone"></i> {{ site.party.rsvp_phone }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- RSVP Section -->
+    {% if site.sections.rsvp and site.rsvp.enabled %}
+    <section id="rsvp" class="rsvp-section">
+        <div class="container">
+            <h2 class="section-title">RSVP</h2>
+            <p class="section-subtitle">Let us know if you can make it!</p>
+            
+            <form id="rsvp-form" class="rsvp-form" action="{{ site.rsvp.form_action }}" method="POST">
+                {% for field in site.rsvp.fields %}
+                <div class="form-group">
+                    <label for="{{ field.name }}">{{ field.label }}</label>
+                    
+                    {% if field.type == "text" or field.type == "email" or field.type == "number" %}
+                    <input type="{{ field.type }}" id="{{ field.name }}" name="{{ field.name }}" {% if field.required %}required{% endif %}>
+                    {% elsif field.type == "select" %}
+                    <select id="{{ field.name }}" name="{{ field.name }}" {% if field.required %}required{% endif %}>
+                        <option value="">Choose an option...</option>
+                        {% for option in field.options %}
+                        <option value="{{ option }}">{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                    {% elsif field.type == "textarea" %}
+                    <textarea id="{{ field.name }}" name="{{ field.name }}" rows="4" {% if field.required %}required{% endif %}></textarea>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                
+                <button type="submit" class="btn btn-primary btn-large">
+                    <i class="fas fa-paper-plane"></i> Send RSVP
+                </button>
+            </form>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 {{ site.parent1_name }} & {{ site.parent2_name }} {{ site.last_name }}</p>
+                
+                {% if site.social_sharing %}
+                <div class="footer-social">
+                    <p>Follow our journey: {{ site.hashtag }}</p>
+                    <div class="social-links">
+                        {% if site.social_links.facebook %}
+                        <a href="{{ site.social_links.facebook }}" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        {% endif %}
+                        {% if site.social_links.instagram %}
+                        <a href="{{ site.social_links.instagram }}" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        {% endif %}
+                        {% if site.social_links.twitter %}
+                        <a href="{{ site.social_links.twitter }}" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox hidden">
+        <div class="lightbox-content">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-image" src="" alt="">
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>
