@@ -1,0 +1,187 @@
+# Gender Reveal Website Configuration
+
+# Site Settings
+title: "Our Big Reveal"
+description: "Join us as we reveal our baby's gender!"
+url: "https://reveal.yourdomain.com" # Update with your domain
+baseurl: "" # Leave empty for root domain
+
+# Parents' Information
+parent1_name: "Sarah"
+parent2_name: "Mike"
+last_name: "Johnson"
+parents_photo: "/assets/images/parents-photo.jpg"
+
+# Baby Information
+due_date: "2024-07-15"
+reveal_date: "2024-03-15"
+weeks_pregnant: 20
+
+# THE BIG SECRET! (This controls what gets revealed)
+gender: "boy" # "boy" or "girl" - CHANGE THIS TO YOUR BABY'S GENDER
+baby_name: "" # Optional: leave empty if you don't want to reveal the name
+
+# Party Information
+party:
+  date: "2024-03-15"
+  time: "2:00 PM"
+  location: "123 Main St, Your City, State 12345"
+  address_link: "https://maps.google.com/?q=123+Main+St,+Your+City,+State"
+  rsvp_email: "sarah.mike@example.com"
+  rsvp_phone: "(555) 123-4567"
+  dress_code: "Casual - wear pink or blue to show your guess!"
+
+# Social Media
+social_sharing: true
+hashtag: "#BabyJohnsonReveal"
+social_links:
+  facebook: "https://facebook.com/yourpage"
+  instagram: "https://instagram.com/yourusername"
+  twitter: "https://twitter.com/yourusername"
+
+# Colors and Theming
+theme:
+  # Color scheme (will change based on gender reveal)
+  neutral_primary: "#6c5ce7"    # Before reveal
+  neutral_secondary: "#a29bfe"
+  neutral_accent: "#ffeaa7"
+  
+  boy_primary: "#4dabf7"        # If it's a boy
+  boy_secondary: "#74c0fc"
+  boy_accent: "#69db7c"
+  
+  girl_primary: "#ff6b9d"       # If it's a girl
+  girl_secondary: "#fcc2d7"
+  girl_accent: "#ffd43b"
+  
+  text_color: "#2d3436"
+  background_color: "#ffffff"
+
+# Content Sections (set to true/false to enable/disable)
+sections:
+  hero: true
+  about_us: true
+  timeline: true
+  gallery: true
+  reveal: true
+  party_details: true
+  rsvp: true
+  countdown: true
+
+# Photo Gallery
+gallery:
+  ultrasound_photos:
+    - "/assets/images/ultrasound/ultrasound-1.jpg"
+    - "/assets/images/ultrasound/ultrasound-2.jpg"
+    - "/assets/images/ultrasound/ultrasound-3.jpg"
+  pregnancy_journey:
+    - "/assets/images/pregnancy-journey/announcement.jpg"
+    - "/assets/images/pregnancy-journey/first-appointment.jpg"
+    - "/assets/images/pregnancy-journey/baby-items.jpg"
+
+# Timeline Events
+timeline:
+  - date: "2023-09-15"
+    title: "We Found Out!"
+    description: "The moment we discovered we were expecting"
+    icon: "heart"
+  - date: "2023-10-01"
+    title: "First Appointment"
+    description: "Our first visit to the doctor"
+    icon: "stethoscope"
+  - date: "2023-11-15"
+    title: "First Ultrasound"
+    description: "Seeing our little one for the first time"
+    icon: "baby"
+  - date: "2024-01-20"
+    title: "Anatomy Scan"
+    description: "The day we found out the gender!"
+    icon: "search"
+  - date: "2024-03-15"
+    title: "Gender Reveal Party"
+    description: "Sharing the news with family and friends"
+    icon: "party"
+
+# Reveal Settings
+reveal:
+  button_text: "Click to Reveal Our Baby's Gender!"
+  boy_announcement: "It's a Boy! 💙"
+  girl_announcement: "It's a Girl! 💖"
+  boy_message: "We're having a little prince!"
+  girl_message: "We're having a little princess!"
+  show_confetti: true
+  show_balloons: true
+
+# About Us Section
+about:
+  story: |
+    We are so excited to share this special moment with you! After finding out we were expecting, 
+    we've been on cloud nine. The journey has been amazing so far, and we can't wait to meet our little one.
+    
+    When we found out the gender at our anatomy scan, we decided to keep it a secret until today. 
+    Thank you for being part of our journey and sharing in our excitement!
+
+  fun_facts:
+    - "Due Date: July 15, 2024"
+    - "Currently 20 weeks along"
+    - "Baby is about the size of a banana"
+    - "Strongest craving: Ice cream!"
+    - "Most common symptom: Can't stop smiling"
+
+# RSVP Form Settings
+rsvp:
+  enabled: true
+  form_action: "https://formspree.io/f/YOUR_FORM_ID" # Get this from formspree.io
+  fields:
+    - name: "name"
+      label: "Your Name"
+      type: "text"
+      required: true
+    - name: "email"
+      label: "Email Address"
+      type: "email"
+      required: true
+    - name: "attending"
+      label: "Will you be attending?"
+      type: "select"
+      options: ["Yes, I'll be there!", "Sorry, can't make it"]
+      required: true
+    - name: "guests"
+      label: "Number of guests"
+      type: "number"
+      required: false
+    - name: "dietary"
+      label: "Any dietary restrictions?"
+      type: "textarea"
+      required: false
+    - name: "guess"
+      label: "What's your guess?"
+      type: "select"
+      options: ["Boy 💙", "Girl 💖", "I'm staying neutral!"]
+      required: false
+    - name: "message"
+      label: "Special message for us"
+      type: "textarea"
+      required: false
+
+# Jekyll Settings
+plugins:
+  - jekyll-sitemap
+
+# Exclude files from build
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .asset-cache
+  - .bundle
+  - .jekyll-assets-cache
+  - .sass-cache
+  - .git
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+encoding: utf-8
